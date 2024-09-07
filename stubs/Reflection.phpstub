@@ -1,0 +1,9 @@
+<?php
+
+class ReflectionFunction
+{
+    /**
+     * @var non-empty-string
+     */
+    public string $name;
+}
