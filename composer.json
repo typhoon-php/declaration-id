@@ -1,6 +1,6 @@
 {
     "name": "typhoon/declaration-id",
-    "description": "A set of identifiers for named and anonymous classes and functions",
+    "description": "A set of identifiers for PHP declarations (constants, functions, classes, templates, etc.)",
     "license": "MIT",
     "type": "project",
     "authors": [
