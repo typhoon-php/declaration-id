@@ -25,7 +25,15 @@
     "autoload": {
         "psr-4": {
             "Typhoon\\DeclarationId\\": "src/"
-        }
+        },
+        "files": [
+            "src/Internal/columnAtPosition.php",
+            "src/Internal/escapeNullBytes.php",
+            "src/Internal/findAnonymousFunctionTokens.php",
+            "src/Internal/findAnonymousClassTokens.php",
+            "src/factories.php",
+            "src/reflectionId.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -7,28 +7,17 @@ namespace Typhoon\DeclarationId;
 /**
  * @api
  */
-final class ConstantId extends Id
+final class ConstantId implements DeclarationId
 {
     /**
      * @param non-empty-string $name
      */
-    protected function __construct(
+    public function __construct(
         public readonly string $name,
     ) {}
 
-    public function describe(): string
+    public function accept(DeclarationIdVisitor $visitor): mixed
     {
-        return 'constant ' . $this->name;
-    }
-
-    public function equals(mixed $value): bool
-    {
-        return $value instanceof self
-            && $value->name === $this->name;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [self::CODE_CONSTANT, $this->name];
+        return $visitor->constant($this);
     }
 }

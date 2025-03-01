@@ -7,30 +7,18 @@ namespace Typhoon\DeclarationId;
 /**
  * @api
  */
-final class AliasId extends Id
+final class AliasId implements DeclarationId
 {
     /**
      * @param non-empty-string $name
      */
-    protected function __construct(
-        public readonly NamedClassId|AnonymousClassId $class,
+    public function __construct(
+        public readonly ClassId $classId,
         public readonly string $name,
     ) {}
 
-    public function describe(): string
+    public function accept(DeclarationIdVisitor $visitor): mixed
     {
-        return \sprintf('type alias %s of %s', $this->name, $this->class->describe());
-    }
-
-    public function equals(mixed $value): bool
-    {
-        return $value instanceof self
-            && $value->class->equals($this->class)
-            && $value->name === $this->name;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [self::CODE_ALIAS, $this->class, $this->name];
+        return $visitor->alias($this);
     }
 }

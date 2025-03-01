@@ -6,35 +6,24 @@ namespace Typhoon\DeclarationId;
 
 /**
  * @api
- * @template-covariant TName of non-empty-string
+ * @template-covariant TObject of object = object
+ * @implements ClassId<TObject>
  */
-final class NamedClassId extends Id
+final class NamedClassId implements ClassId
 {
     /**
-     * @param TName $name
+     * @param class-string<TObject> $name
      */
-    protected function __construct(
+    public function __construct(
         public readonly string $name,
-    ) {}
-
-    public function describe(): string
-    {
-        return 'class ' . $this->name;
+    ) {
+        if (str_contains($name, '@')) {
+            throw new \InvalidArgumentException();
+        }
     }
 
-    public function equals(mixed $value): bool
+    public function accept(DeclarationIdVisitor $visitor): mixed
     {
-        return $value instanceof self
-            && $value->name === $this->name;
-    }
-
-    public function reflect(): \ReflectionClass
-    {
-        return new \ReflectionClass($this->name);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [self::CODE_NAMED_CLASS, $this->name];
+        return $visitor->namedClass($this);
     }
 }

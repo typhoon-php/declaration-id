@@ -22,8 +22,6 @@
         <directory name="tests"/>
         <ignoreFiles>
             <directory name="vendor"/>
-            <file name="src/Internal/IdIsNotDefined.php"/>
-            <file name="src/Internal/IdMap.php"/>
         </ignoreFiles>
         <ignoreFiles allowMissingFiles="true">
             <directory name="var"/>

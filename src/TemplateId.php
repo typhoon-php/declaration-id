@@ -7,30 +7,18 @@ namespace Typhoon\DeclarationId;
 /**
  * @api
  */
-final class TemplateId extends Id
+final class TemplateId implements DeclarationId
 {
     /**
      * @param non-empty-string $name
      */
-    protected function __construct(
-        public readonly NamedFunctionId|AnonymousFunctionId|NamedClassId|AnonymousClassId|MethodId $declaration,
+    public function __construct(
+        public readonly FunctionId|ClassId $declarationId,
         public readonly string $name,
     ) {}
 
-    public function describe(): string
+    public function accept(DeclarationIdVisitor $visitor): mixed
     {
-        return \sprintf('template %s of %s', $this->name, $this->declaration->describe());
-    }
-
-    public function equals(mixed $value): bool
-    {
-        return $value instanceof self
-            && $value->declaration->equals($this->declaration)
-            && $value->name === $this->name;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [self::CODE_TEMPLATE, $this->declaration, $this->name];
+        return $visitor->template($this);
     }
 }
