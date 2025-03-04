@@ -31,7 +31,6 @@
     </projectFiles>
 
     <plugins>
-        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
         <pluginClass class="Typhoon\CheckVisibilityPsalmPlugin\CheckVisibilityPlugin"/>
     </plugins>
 
@@ -42,38 +41,16 @@
     </ignoreExceptions>
 
     <issueHandlers>
-        <ArgumentTypeCoercion>
-            <errorLevel type="suppress">
-                <referencedFunction name="ReflectionClass::__construct"/>
-            </errorLevel>
-        </ArgumentTypeCoercion>
         <PluginIssue name="UnspecifiedVisibility">
             <errorLevel type="suppress">
                 <directory name="tests"/>
             </errorLevel>
         </PluginIssue>
-        <MissingThrowsDocblock>
+        <UnusedClass>
             <errorLevel type="suppress">
                 <directory name="tests"/>
             </errorLevel>
-        </MissingThrowsDocblock>
-        <MixedAssignment errorLevel="suppress"/>
-        <PossiblyUnusedMethod>
-            <errorLevel type="suppress">
-                <directory name="tests"/>
-            </errorLevel>
-        </PossiblyUnusedMethod>
-        <RedundantCondition>
-            <errorLevel type="suppress">
-                <directory name="tests"/>
-            </errorLevel>
-        </RedundantCondition>
-        <RedundantConditionGivenDocblockType>
-            <errorLevel type="suppress">
-                <directory name="tests"/>
-            </errorLevel>
-        </RedundantConditionGivenDocblockType>
-        <UnusedConstructor errorLevel="suppress"/>
+        </UnusedClass>
     </issueHandlers>
 
     <forbiddenFunctions>
